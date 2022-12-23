@@ -1,3 +1,0 @@
-C:/Users/charv/CLionProjects/test3/cmake-build-debug/CMakeFiles/test3.dir
-C:/Users/charv/CLionProjects/test3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/charv/CLionProjects/test3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
