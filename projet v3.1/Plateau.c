@@ -207,14 +207,68 @@ int remplir_les_cases(int i,  int l, int c ,int* random_p,int random_s,int* comp
     }
 }
 
+void afficher_la_derniere_piece(int *compte_T,int *compte_I,int *compte_L) {
+    int matrixe[3][3];
+    printf("Votre piece restante est :\n");
 
 
+    if (*compte_T > 0) {
+        for (int l = 0; l < 3; l++) {
+            for (int c = 0; c < 3; c++) {
+
+                if ((l == 0 && (c == 0 || c == 2)) || l == 2) {  // pieces en T dans tt les sens
+                    matrixe[l][c] = 0;
+                } else {
+                    matrixe[l][c] = 1;
+                }
+            }
+        }
+    }
+    if (*compte_I > 0) {
+        for (int l = 0; l < 3; l++) {
+            for (int c = 0; c < 3; c++) {
+                if (l == 0 || l == 2) {
+                    matrixe[l][c] = 0;
+                } else {
+                    matrixe[l][c] = 1;
+                }
+
+            }
+        }
+    }
+    if (*compte_L > 0) {
+        for (int l = 0; l < 3; l++) {
+            for (int c = 0; c < 3; c++) {
+                if (c == 0 || (c == 2 && l == 2) || l == 0) {  // piece ne L
+                    matrixe[l][c] = 0;
+                } else {
+                    matrixe[l][c] = 1;
+                }
+            }
+
+        }
+    }
+    for (int l = 0; l < 3; l++) {
+        for (int c = 0; c < 3; c++) {
+            if(matrixe[l][c] == 0)
+            {
+                printf("%c", 0xDB);
+            }
+            else
+                printf("%c",' ');
+        }
+printf("\n");
+
+    }
+}
 void zebi(int matrix[49][3][3]) {
     int random_p;
     int random_s;
     int compte_T=6*9;
     int compte_L=16*9;
     int compte_I=12*9;
+
+    int nbr_joueur;
 
     int d=0;
     srand(time(NULL));
@@ -246,7 +300,7 @@ void zebi(int matrix[49][3][3]) {
                     if (i == 6+d && c == 2) {
                         if(l == 0 &&(a == 1 || a == 3 || a == 5))
                             printf("\n%c ",0x1A);
-                        //if(l == 1 &&(a == 1 || a == 3 || a == 5))
+                            //if(l == 1 &&(a == 1 || a == 3 || a == 5))
                             //printf("%c\n ",0x1B);
                         else
                             printf("\n  ");
@@ -262,9 +316,11 @@ void zebi(int matrix[49][3][3]) {
         }
         d=d+7;
     }
+    afficher_la_derniere_piece(&compte_T,&compte_I,&compte_L);
     //printf("       %c           %c           %c  ",0x18,0x18,0x18);
 
 }
+
 
 // useless : test pour créer des pieces randoms
 /*void piece() {
